@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exciting Trip - Fashion untuk Petualanganmu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #131312;
+            --light: #f8f9fa;
+            --dark: #1a252f;
+            --text: #555;
+            --shadow: 0 8px 32px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            background-color: #fff;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            z-index: 999;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(Desain\ Jaket\ Keren.pnga) center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease forwards;
+            opacity: 0;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(230, 126, 34, 0.3);
+            background: #d35400;
+        }
+
+        /* Animasi */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Koleksi */
+        .section {
+            padding: 5rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .produk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .produk-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .produk-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .produk-img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .produk-card:hover .produk-img {
+            transform: scale(1.05);
+        }
+
+        .produk-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .produk-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .harga {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .btn-beli {
+            padding: 0.7rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .btn-beli:hover {
+            background: var(--secondary);
+            transform: scale(1.05);
+        }
+
+        /* Tentang Kami */
+        .tentang {
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tentang-img {
+            flex: 1 1 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .tentang-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tentang-text {
+            flex: 1 1 400px;
+        }
+
+        .tentang-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 5% 1rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .sosmed {
+            margin: 1.5rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .sosmed a {
+            color: white;
+            transition: var(--transition);
+        }
+
+        .sosmed a:hover {
+            color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #444;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: -100%;
+                width: 100%;
+                flex-direction: column;
+                background: white;
+                padding: 2rem;
+                gap: 1.5rem;
+                box-shadow: var(--shadow);
+                transition: var(--transition);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">Exciting Trip</div>
+        <div class="menu-toggle" id="mobile-menu">☰</div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#beranda">Beranda</a></li>
+            <li><a href="#koleksi">Koleksi</a></li>
+            <li><a href="#tentang">Tentang Kami</a></li>
+            <li><a href="#kontak">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="beranda">
+        <h1>Gaya Untuk Setiap Perjalanan</h1>
+        <p>Pakaian nyaman, modis, dan siap menemani petualanganmu ke mana saja bersama Exciting Trip</p>
+        <a href="#koleksi" class="btn">Lihat Koleksi</a>
+    </section>
+
+    <!-- Koleksi Produk -->
+    <section class="section" id="koleksi">
+        <h2 class="section-title">Koleksi Terbaru</h2>
+        <div class="produk-grid">
+            <div class="produk-card">
+                <img src="Website Toko Exciting Trip (8).png" alt="Jaket Outdoor Ringan" class="produk-img">
+                <div class="produk-info">
+                    <h3>Jaket Outdoor Ringan</h3>
+                    <p>Cocok untuk mendaki dan jalan jauh</p>
+                    <div class="harga">Rp 299.000</div>
+                    <button class="btn-beli">Beli Sekarang</button>
+                </div>
+            </div>
+
+            <div class="produk-card">
+                <img src="Website Toko Exciting Trip (9).png" alt="Kaos Santai" class="produk-img">
+                <div class="produk-info">
+                    <h3>Kaos Katun Premium</h3>
+                    <p>Nyaman dipakai seharian</p>
+                    <div class="harga">Rp 99.000</div>
+                    <button class="btn-beli">Beli Sekarang</button>
+                </div>
+            </div>
+
+            <div class="produk-card">
+                <img src="Website Toko Exciting Trip (11).png" alt="Kemeja Linen" class="produk-img">
+                <div class="produk-info">
+                    <h3>Kemeja Linen Travel</h3>
+                    <p>Tidak mudah kusut dan sejuk</p>
+                    <div class="harga">Rp 189.000</div>
+                    <button class="btn-beli">Beli Sekarang</button>
+                </div>
+            </div>
+
+            <div class="produk-card">
+                <img src="Website Toko Exciting Trip (12).png" alt="Celana Pendek" class="produk-img">
+                <div class="produk-info">
+                    <h3>Celana Pendek Cepat Kering</h3>
+                    <p>Siap untuk aktivitas luar ruangan</p>
+                    <div class="harga">Rp 129.000</div>
+                    <button class="btn-beli">Beli Sekarang</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tentang Kami -->
+    <section class="section tentang" id="tentang">
+        <div class="tentang-img">
+            <img src="Website Toko Exciting Trip (13).png" alt="Tim Exciting Trip">
+        </div>
+        <div class="tentang-text">
+            <h2>Tentang Exciting Trip</h2>
+            <p>Exciting Trip lahir dari keinginan untuk menghadirkan pakaian yang tidak hanya indah dipandang, tapi juga nyaman dan tangguh untuk setiap petualanganmu. Kami percaya bahwa gaya dan kenyamanan bisa berjalan beriringan, baik saat kamu menjelajahi kota baru maupun mendaki puncak gunung.</p>
+            <p>Semua produk kami dibuat dari bahan berkualitas tinggi dengan desain yang mengikuti tren namun tetap abadi. Siap untuk perjalananmu selanjutnya?</p>
+            <a href="#koleksi" class="btn" style="margin-top: 1.5rem;">Lihat Semua Produk</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="kontak">
+        <div class="footer-logo">Exciting Trip</div>
+        <p>Pakaian terbaik untuk perjalanan terbaikmu</p>
+        <div class="sosmed">
+            <a href="#">📷</a>
+            <a href="#">📘</a>
+            <a href="#">🐦</a>
+            <a href="#">📺</a>
+        </div>
+        <p>📍 Bandung, Jawa Barat | 📞 0877-5351-9260 | ✉️ info@excitingtrip.com</p>
+        <div class="copyright">
+            © 2026 Exciting Trip. Dibauat oleh @adpr_
+        </div>
+    </footer>
+
+    <!-- Script Menu HP -->
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Tutup menu saat link diklik
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
